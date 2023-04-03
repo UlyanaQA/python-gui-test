@@ -1,9 +1,9 @@
 from model.group import Group
 
 
-def test_add_group(app, xlxs_groups):
+def test_add_group(app, excel_groups):
     old_groups = app.groups.get_group_list()
-    group = xlxs_groups
+    group = excel_groups
     app.groups.add_new(group)
     new_groups = app.groups.get_group_list()
     old_groups.append(group)

@@ -15,7 +15,7 @@ def app(request):
 
 def pytest_generate_tests(metafunc):
     for fixture in metafunc.fixturenames:
-        if fixture.startswith("xlxs_"):
+        if fixture.startswith("excel_"):
             testdata = load_from_excel(fixture[6:])
             metafunc.parametrize(fixture, testdata, ids=[str(x) for x in testdata])
 
@@ -24,7 +24,7 @@ def load_from_excel(file):
     testdata = []
     xl = CreateObject("Excel.Application")
     xl.Visible = 1
-    wb = xl.Workbooks.Open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "groups.xlsx"))
+    wb = xl.Workbooks.Open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "data/%s.xlsx" % file))
     worksheet = wb.Sheets[1]
     if worksheet.Cells[1, 1].Value() == "Random_groups":
         testdata = load_groups(worksheet)

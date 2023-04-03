@@ -12,7 +12,7 @@ except getopt.GetoptError as err:
     sys.exit(2)
 
 n = 10
-f = "groups.xlsx"
+f = "data/groups.xlsx"
 
 for opt, val in opts:
     if opt == "-n":
@@ -34,5 +34,5 @@ wb = xl.Workbooks.Add()
 xl.Range["A1"].Value[()] = "Random_groups"
 for i in range(10):
     xl.Range["A%s" % (i + 2)].Value[()] = random_string("group", 10)
-wb.SaveAs(os.path.join(project_dir, "groups.xlsx"))
+wb.SaveAs(os.path.join(project_dir, f))
 xl.Quit()

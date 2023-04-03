@@ -6,7 +6,7 @@ class GroupHelper:
     def __init__(self, app):
         self.app = app
 
-    group_cache = []
+    group_cache = None
 
     def get_group_list(self):
         if self.group_cache is None:
@@ -44,6 +44,7 @@ class GroupHelper:
         self.group_deletion.window(auto_id="uxDeleteAllRadioButton").click()
         self.group_deletion.window(auto_id="uxOKAddressButton").click()
         self.close_group_editor()
+        self.group_cache = None
 
     def select_group_by_index(self, index):
         tree = self.group_editor.window(auto_id="uxAddressTreeView")
